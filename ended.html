@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Oyun Bitti</title>
+    <link rel="stylesheet" href="reversi.css">
+    <link rel="icon" type="image/png" href="reversi.png">
+</head>
+<body>
+    <div class="container" style="text-align:center; margin-top:60px;">
+        <h2>Rakip oyundan ayrıldı, kazandınız!</h2>
+        <button id="backToMenu" class="main-btn" style="margin-top:32px; font-size:1.1rem;">Ana Menüye Dön</button>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "",
+            authDomain: "",
+            databaseURL: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: "",
+            appId: "",
+            measurementId: ""
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        // Tüm odaları oku ve status 'ended' olanları sil
+        db.ref('rooms').once('value').then(snap => {
+            const rooms = snap.val() || {};
+            Object.entries(rooms).forEach(([roomId, roomData]) => {
+                if (roomData.status === 'ended') {
+                    db.ref('rooms/' + roomId).remove();
+                }
+            });
+        });
+        document.getElementById('backToMenu').onclick = function() {
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+</html> 

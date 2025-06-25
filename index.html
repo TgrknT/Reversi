@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reversi Oyununa Hoş Geldiniz</title>
+    <link rel="stylesheet" href="reversi.css">
+    <link rel="icon" type="image/png" href="reversi.png">
+</head>
+<body>
+    <div class="container">
+        <h1>Reversi Oyununa Hoş Geldiniz</h1>
+        <div id="mainMenu" class="button-group">
+            <button id="singleBtn" class="main-btn">Tek Oyunculu</button>
+            <button id="multiBtn" class="main-btn">Çok Oyunculu</button>
+        </div>
+        <div id="difficultyMenu" class="difficulty-group hidden">
+            <button class="difficulty-btn" data-difficulty="kolay">Kolay</button>
+            <button class="difficulty-btn" data-difficulty="orta">Orta</button>
+            <button class="difficulty-btn" data-difficulty="zor">Zor</button>
+        </div>
+        <div id="multiMenu" class="button-group hidden">
+            <input id="roomIdInput" type="text" placeholder="Oda Kodu" style="font-size:1.1rem; padding:10px; border-radius:8px; border:none; outline:none; margin-bottom:10px; text-align:center;" maxlength="16">
+            <button id="createRoomBtn" class="main-btn">Oda Oluştur</button>
+            <button id="joinRoomBtn" class="main-btn">Odaya Katıl</button>
+            <button id="backToMainBtn" class="main-btn" style="background:#444;">Geri</button>
+        </div>
+        <div id="roomInfo" class="hidden" style="margin-bottom:18px; text-align:center;">
+            <div>Oda Kodu: <span id="roomIdShow"></span> <button id="copyRoomLink" style="font-size:1rem; padding:2px 8px; border-radius:6px; border:none; background:#4b5cff; color:#fff; cursor:pointer;">Kopyala</button></div>
+            <div id="waitingInfo" style="margin-top:8px;">Diğer oyuncu bekleniyor...</div>
+        </div>
+        <div id="gameArea" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 22px;">
+                <div id="scoreBoard" style="font-size: 1.3rem; font-weight: 600;">
+                    <span id="scoreBlack">● 2</span> - <span id="scoreWhite">○ 2</span>
+                </div>
+                <div id="turnInfo" style="font-size: 1.1rem; font-weight: 500;">
+                    Sıra: <span id="turnPlayer">●</span>
+                </div>
+            </div>
+            <div id="winnerInfo" style="display:none; margin-bottom: 18px; font-size: 1.3rem; font-weight: bold; text-align: center;"></div>
+            <div id="board"></div>
+            <div id="gameEndBtns" class="hidden" style="display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:18px;">
+                <button id="playAgainBtn" class="main-btn" style="font-size:1.1rem; padding:10px 0;">Tekrar Oyna</button>
+            </div>
+            <button id="backToMenu" class="main-btn" style="margin-top: 28px; font-size: 1.1rem; padding: 13px 0;">Menüye Dön</button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <script src="reversi.js"></script>
+    <script src="reversi-firebase.js"></script>
+</body>
+</html> 
